@@ -3,305 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <button id="scrollToTopBtn" title="Go to top">↑</button>
+    <title>Personal Website</title>
     <style>
-        /* Your CSS goes here */
+        /* General Reset */
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            height: 100%;
+            width: 60px; /* Initial width when collapsed */
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #1E90FF;
+            transition: width 0.5s; /* Smooth slide-in effect */
+            z-index: 9999; /* Stay on top of other content */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar:hover {
+            width: 200px; /* Expanded width on hover */
+        }
+
+        .sidebar ul {
+            padding: 0;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body:hover {
-            background-color: #e0e0e0; /* Darker background on hover */
-        }
-
-        header {
-            background: linear-gradient(135deg, #1E90FF, #00BFFF);
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        nav ul {
             list-style: none;
-            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
+        .sidebar ul li {
+            width: 100%;
+            text-align: left;
         }
 
-        nav a {
-            color: #fff;
+        .sidebar ul li a {
+            padding: 15px;
+            display: block;
+            color: white;
             text-decoration: none;
             font-weight: bold;
-            position: relative;
-            transition: color 0.3s;
-        }
-
-        nav a::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: #FFD700;
-            transition: width 0.4s, background-color 0.4s;
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-        }
-
-        nav a:hover {
-            color: #FFD700; /* Gold text color on hover */
-        }
-
-        nav a:hover::after {
             width: 100%;
-            background: #FFD700; /* Gold underline on hover */
+            transition: background-color 0.3s, padding-left 0.3s;
         }
 
+        .sidebar ul li a:hover {
+            background-color: #4682B4;
+            padding-left: 20px; /* Indentation on hover */
+        }
+
+        .sidebar ul li a span {
+            display: none; /* Hide text by default when sidebar is collapsed */
+        }
+
+        .sidebar:hover ul li a span {
+            display: inline; /* Show text when sidebar expands */
+            margin-left: 10px;
+        }
+
+        /* Main content styling */
         main {
-            max-width: 800px;
-            margin: 20px auto;
+            margin-left: 70px; /* Space for collapsed sidebar */
             padding: 20px;
-            background: #fff;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: margin-left 0.5s;
         }
 
-        main:hover {
-            transform: scale(1.02); /* Slight scale effect on hover */
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25); /* Deeper shadow on hover */
+        .sidebar:hover + main {
+            margin-left: 210px; /* Adjust main content position when sidebar expands */
         }
 
+        /* Section styling */
         section {
-            padding: 15px;
-            margin: 10px 0;
-            border: 1px solid #4169E1;
-            border-radius: 5px;
-            background: #fafafa;
-            transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
-        }
-
-        section:hover {
-            background: #f0f0f0; /* Lighten background on hover */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-            transform: translateY(-2px); /* Slight lift effect */
+            margin-bottom: 40px;
         }
 
         h2 {
-            border-bottom: 2px solid #4169E1;
-            padding-bottom: 5px;
-            transition: color 0.3s;
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #333;
         }
 
-        h2:hover {
-            color: #1E90FF; /* Change color on hover */
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background: linear-gradient(135deg, #077bff, #4682B4);
-            color: #fff;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        @media (max-width: 600px) {
-            nav ul li {
-                display: block;
-                margin: 10px 0;
-            }
-        }
-
-        #scrollToTopBtn {
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            z-index: 100;
-            border: none;
-            outline: none;
-            background-color: #4682B4;
-            color: white;
-            cursor: pointer;
-            padding: 15px;
-            border-radius: 50%; /* Make it circular */
+        p {
             font-size: 18px;
-            display: none; /* Hidden by default */
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-        }
-
-        #scrollToTopBtn:hover {
-            background-color: #0000CD;
-            transform: scale(1.1); /* Slightly enlarge on hover */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-        }
-
-        #scrollToTopBtn:active {
-            transform: scale(0.95); /* Scale down when clicked */
-        }
-
-        /* Show button when scrolling down */
-        .window-scroll {
-            display: block; /* JavaScript will toggle this class */
+            color: #666;
         }
     </style>
-    <script>
-        // Scroll to Top Button
-        let scrollToTopBtn = document.getElementById("scrollToTopBtn");
-        window.onscroll = function() {
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                scrollToTopBtn.style.display = "block";
-            } else {
-                scrollToTopBtn.style.display = "none";
-            }
-        };
-        scrollToTopBtn.onclick = function() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        };
-
-        // Smooth Scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Typewriter Effect
-        const text = "Welcome to My Portfolio";
-        let index = 0;
-        function type() {
-            if (index < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(index);
-                index++;
-                setTimeout(type, 100);
-            }
-        }
-        window.onload = type;
-
-        // Scroll Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        });
-        document.querySelectorAll('.fade-in').forEach((element) => {
-            observer.observe(element);
-        });
-    </script>
 </head>
 <body>
-    <header>
-        <h1 id="typewriter">Your Name</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#education">Educational Background</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#awards">Awards</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#membership">Membership</a></li>
-                <li><a href="#research">Research Thrust Area</a></li>
-                <li><a href="#events">List of Events</a></li>
-                <li><a href="#presentations">Presentations</a></li>
-                <li><a href="#courses">Courses Completed</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="#about"><span>About Me</span></a></li>
+            <li><a href="#education"><span>Educational Background</span></a></li>
+            <li><a href="#experience"><span>Experience</span></a></li>
+            <li><a href="#publications"><span>Publications</span></a></li>
+            <li><a href="#awards"><span>Awards</span></a></li>
+            <li><a href="#projects"><span>Projects</span></a></li>
+            <li><a href="#membership"><span>Membership</span></a></li>
+            <li><a href="#research"><span>Research</span></a></li>
+            <li><a href="#events"><span>Events</span></a></li>
+            <li><a href="#presentations"><span>Presentations</span></a></li>
+            <li><a href="#courses"><span>Courses</span></a></li>
+            <li><a href="#contact"><span>Contact</span></a></li>
+        </ul>
+    </div>
 
     <main>
-        <section id="about" class="fade-in">
+        <section id="about">
             <h2>About Me</h2>
-            <p>I am a passionate developer with a strong interest in web technologies and design. My journey in tech began with a curiosity about how websites are built, and I've been learning and growing ever since.</p>
+            <p>I am a passionate developer...</p>
         </section>
 
-        <section id="education" class="fade-in">
+        <section id="education">
             <h2>Educational Background</h2>
             <p>Bachelor of Science in Computer Science, XYZ University (2020).</p>
-            <p>Certification in Web Development, ABC Institute (2021).</p>
         </section>
 
-        <section id="experience" class="fade-in">
+        <section id="experience">
             <h2>Experience</h2>
-            <p>Frontend Developer at Tech Company (2021-Present).</p>
-            <p>Intern at Creative Agency (2020-2021).</p>
+            <p>Worked as a software developer at ABC Company...</p>
         </section>
 
-        <section id="publications" class="fade-in">
-            <h2>Paper/Patent Publications</h2>
-            <p>“A Study on Web Accessibility,” Journal of Web Development, 2022.</p>
+        <section id="publications">
+            <h2>Publications</h2>
+            <p>Published various research papers in the field of AI and ML.</p>
         </section>
 
-        <section id="awards" class="fade-in">
-            <h2>Awards and Achievements</h2>
-            <p>Best Project Award at XYZ University (2020).</p>
+        <section id="awards">
+            <h2>Awards</h2>
+            <p>Recipient of the Best Innovator Award...</p>
         </section>
 
-        <section id="projects" class="fade-in">
+        <section id="projects">
             <h2>Projects</h2>
-            <p>Portfolio Website - A personal website showcasing my work.</p>
-            <p>E-commerce Platform - Developed a full-stack e-commerce site.</p>
+            <p>Worked on several exciting projects in the field of Web Development.</p>
         </section>
 
-        <section id="membership" class="fade-in">
+        <section id="membership">
             <h2>Membership</h2>
-            <p>Member of the Web Developers Association.</p>
+            <p>Member of various tech communities and societies.</p>
         </section>
 
-        <section id="research" class="fade-in">
-            <h2>Research Thrust Area</h2>
-            <p>My research interests include web accessibility and user experience design.</p>
+        <section id="research">
+            <h2>Research</h2>
+            <p>Focused research on Blockchain Technology and Cybersecurity.</p>
         </section>
 
-        <section id="events" class="fade-in">
-            <h2>List of Events</h2>
-            <p>Speaker at Web Dev Conference 2023.</p>
+        <section id="events">
+            <h2>Events</h2>
+            <p>Organized and participated in various tech events and hackathons.</p>
         </section>
 
-        <section id="presentations" class="fade-in">
-            <h2>Poster/Paper Presentation</h2>
-            <p>“Improving User Experience through Accessibility,” presented at XYZ Conference (2022).</p>
+        <section id="presentations">
+            <h2>Presentations</h2>
+            <p>Presented at various tech conferences globally.</p>
         </section>
 
-        <section id="courses" class="fade-in">
-            <h2>Courses Completed</h2>
-            <p>Advanced JavaScript, Responsive Web Design, UI/UX Fundamentals.</p>
+        <section id="courses">
+            <h2>Courses</h2>
+            <p>Completed online courses in AI, Blockchain, and more.</p>
         </section>
 
-        <section id="contact" class="fade-in">
-            <h2>Contact Address</h2>
-            <p>Email: your.email@example.com</p>
-            <p>LinkedIn: linkedin.com/in/yourprofile</p>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: myemail@example.com</p>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Your Name</p>
-    </footer>
 </body>
-</html>
+    </html>
