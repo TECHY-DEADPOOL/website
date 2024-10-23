@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Website</title>
+    <title>Sumon Adhya's Portfolio</title>
     <style>
         /* General Reset */
         * {
@@ -11,11 +11,13 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: Arial, sans-serif;
+            background: url('https://images.pexels.com/photos/695657/pexels-photo-695657.jpeg?cs=srgb&dl=pexels-ironic-695657.jpg&fm=jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-shadow: 1px 1px 2px black;
         }
-
         /* Sidebar styling */
         .sidebar {
             height: 100%;
@@ -23,17 +25,16 @@
             position: fixed;
             top: 0;
             left: 0;
-            background-color: #1E90FF;
+            background-color: rgba(30, 144, 255, 0.8); /* Transparent blue */
             transition: width 0.5s; /* Smooth slide-in effect */
             z-index: 9999; /* Stay on top of other content */
             overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-y: auto; /* Enable vertical scroll */
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
         }
-
         .sidebar:hover {
             width: 200px; /* Expanded width on hover */
         }
-
         .sidebar ul {
             padding: 0;
             margin: 0;
@@ -42,12 +43,10 @@
             flex-direction: column;
             align-items: center;
         }
-
         .sidebar ul li {
             width: 100%;
             text-align: left;
         }
-
         .sidebar ul li a {
             padding: 15px;
             display: block;
@@ -57,51 +56,88 @@
             width: 100%;
             transition: background-color 0.3s, padding-left 0.3s;
         }
-
         .sidebar ul li a:hover {
             background-color: #4682B4;
             padding-left: 20px; /* Indentation on hover */
         }
-
         .sidebar ul li a span {
             display: none; /* Hide text by default when sidebar is collapsed */
         }
-
         .sidebar:hover ul li a span {
             display: inline; /* Show text when sidebar expands */
             margin-left: 10px;
         }
-
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .social-icon:hover {
+            opacity: 1;
+        }
         /* Main content styling */
         main {
-            margin-left: 70px; /* Space for collapsed sidebar */
+            margin-left: 60px; /* Adjust this based on the sidebar's initial collapsed width */
             padding: 20px;
             transition: margin-left 0.5s;
         }
-
         .sidebar:hover + main {
-            margin-left: 210px; /* Adjust main content position when sidebar expands */
+            margin-left: 200px; /* Adjust this based on the sidebar's expanded width */
         }
-
         /* Section styling */
         section {
             margin-bottom: 40px;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
         }
-
+        section.hidden {
+            opacity: 0; /* Fully transparent when hidden */
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 30px;
+            color: #fff; /* White color for better visibility */
+            text-align: center;
+        }
         h2 {
             margin-bottom: 10px;
-            font-size: 24px;
-            color: #333;
+            font-size: 28px; /* Increased font size */
+            color: #fff;
+            font-weight: bold; /* Make it bold */
+            text-decoration: underline; /* Underline */
+            text-decoration-color: rgba(255, 255, 255, 0.5); /* Optional: change underline color */
         }
-
         p {
             font-size: 18px;
-            color: #666;
+            color: #fff;
+        }
+        /* Introduction styling */
+        .introduction {
+            font-size: 20px; /* Adjust the font size */
+            text-align: center; /* Center the text */
+            margin: 20px 0; /* Space above and below */
+            color: #fff; /* White color for better visibility */
+        }
+        .highlighted-name {
+            font-weight: bold; /* Make it bold */
+            color: #FFD700; /* Highlight color */
+            text-shadow: 1px 1px 2px black; /* Optional: Add shadow for visibility */
+        }
+        /* Footer styling */
+        footer {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            position: relative; /* Position relative to contain absolutely positioned elements */
+        }
+        .social-icons {
+            display: flex;
+            gap: 20px; /* Space between icons */
         }
     </style>
 </head>
 <body>
-
     <div class="sidebar">
         <ul>
             <li><a href="#about"><span>About Me</span></a></li>
@@ -118,68 +154,89 @@
             <li><a href="#contact"><span>Contact</span></a></li>
         </ul>
     </div>
-
     <main>
-        <section id="about">
+        <h1>WELCOME TO MY PORTFOLIO WEBSITE</h1>
+        <section id="about" class="section">
             <h2>About Me</h2>
-            <p>I am a passionate developer...</p>
+            <p class="introduction">My name is <span class="highlighted-name">Sumon Adhya</span>.</p>
+            <p>I am a first-year Bachelor of Technology (B.Tech) student in Computer Science and Engineering, specializing in Internet of Things (IoT), Blockchain Technology (BCT), and Cyber Security, at the University of Engineering and Management. With a strong passion for technology, I am eager to expand my knowledge and skills in the ever-evolving tech landscape.</p>
         </section>
-
-        <section id="education">
+        <section id="education" class="section">
             <h2>Educational Background</h2>
-            <p>Bachelor of Science in Computer Science, XYZ University (2020).</p>
+            <p><strong>Bachelor of Technology (B.Tech) in Computer Science and Engineering</strong><br>
+            University of Engineering and Management (2024 - Present)</p>
+            <p><strong>Higher Secondary Education</strong><br>
+            Government Sponsored Multipurpose School (Boys), Taki House</p>
+            <p><strong>Secondary Education</strong><br>
+            Scottish Church Collegiate School</p>
         </section>
-
-        <section id="experience">
+        <section id="experience" class="section">
             <h2>Experience</h2>
-            <p>Worked as a software developer at ABC Company...</p>
+            <p>As I am at the beginning of my academic journey, I currently do not have formal work experience. However, I am enthusiastic about gaining practical exposure in the tech industry.</p>
         </section>
-
-        <section id="publications">
+        <section id="publications" class="section">
             <h2>Publications</h2>
-            <p>Published various research papers in the field of AI and ML.</p>
+            <p>At this stage, I have not yet contributed to any publications but am keen to explore research opportunities in the future.</p>
         </section>
-
-        <section id="awards">
+        <section id="awards" class="section">
             <h2>Awards</h2>
-            <p>Recipient of the Best Innovator Award...</p>
+            <p>While I have not received any formal awards yet, I am dedicated to excelling in my studies and contributing positively to my academic community.</p>
         </section>
-
-        <section id="projects">
+        <section id="projects" class="section">
             <h2>Projects</h2>
-            <p>Worked on several exciting projects in the field of Web Development.</p>
+            <p>I have completed several foundational projects in Python and web development, demonstrating my ability to apply theoretical knowledge to practical applications. These projects have provided me with a solid understanding of programming concepts and web technologies.</p>
         </section>
-
-        <section id="membership">
+        <section id="membership" class="section">
             <h2>Membership</h2>
-            <p>Member of various tech communities and societies.</p>
+            <p>I am not currently a member of any formal organizations, but I am actively seeking opportunities to engage with tech communities and enhance my learning experience.</p>
         </section>
-
-        <section id="research">
+        <section id="research" class="section">
             <h2>Research</h2>
-            <p>Focused research on Blockchain Technology and Cybersecurity.</p>
+            <p>Although I have not yet undertaken any research projects, I am eager to delve into various topics within computer science and contribute to meaningful discussions in the field.</p>
         </section>
-
-        <section id="events">
+        <section id="events" class="section">
             <h2>Events</h2>
-            <p>Organized and participated in various tech events and hackathons.</p>
+            <p>I am looking forward to participating in tech events and hackathons to further expand my network and practical skills.</p>
         </section>
-
-        <section id="presentations">
+        <section id="presentations" class="section">
             <h2>Presentations</h2>
-            <p>Presented at various tech conferences globally.</p>
+            <p>While I have not presented at any events yet, I am keen to share my insights and projects in future academic settings.</p>
         </section>
-
-        <section id="courses">
+        <section id="courses" class="section">
             <h2>Courses</h2>
-            <p>Completed online courses in AI, Blockchain, and more.</p>
+            <p>I have successfully completed online courses in Python programming and basic web development through YouTube. I am currently enrolled in a Data Structures and Algorithms course to deepen my understanding of essential programming concepts.</p>
         </section>
-
-        <section id="contact">
+        <section id="contact" class="section">
             <h2>Contact</h2>
-            <p>Email: myemail@example.com</p>
+            <p>Email: <a href="mailto:sumon.adhya2024@uem.edu.in" style="color: #FFD700;">sumon.adhya2024@uem.edu.in</a></p>
         </section>
     </main>
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/sumon-adhya-792853317/" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" class="social-icon">
+            </a>
+            <a href="https://github.com/TECHY-DEADPOOL" target="_blank">
+                <img src="https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_1280.png" alt="GitHub" class="social-icon">
+            </a>
+        </div>
+    </footer>
+    <script>
+        const sections = document.querySelectorAll('section');
 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    entry.target.classList.add('hidden'); // Add class to hide
+                } else {
+                    entry.target.classList.remove('hidden'); // Remove class to show
+                }
+            });
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
-            </html>
+</html>
